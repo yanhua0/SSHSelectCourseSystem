@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.select.entity.Course" table="course">
+        <id name="courseId" column="course_id">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="courseName" column="course_name" length="255"></property>
+        <property name="teacherName" column="teacher_name" length="255"></property>
+        <property name="classroom" column="classroom" length="255"></property>
+        <property name="number" column="number" length="12" type="java.lang.Integer"></property>
+
+
+
+    </class>
+</hibernate-mapping>
