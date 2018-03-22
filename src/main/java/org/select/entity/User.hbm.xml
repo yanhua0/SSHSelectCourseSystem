@@ -8,7 +8,7 @@
             <column name="username" length="12" />
             <generator class="assigned" />
         </id>
-
+        <property name="name" column="name" length="20" />
         <property name="password" column="password" length="20" />
         <property name="state" column="state" length="20" type="java.lang.Integer" />
         <property name="createTime" column="create_time" length="20" type="java.util.Date" />

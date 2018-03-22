@@ -2,20 +2,30 @@
 <!DOCTYPE struts PUBLIC
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
-
 <struts>
     <!--namespace="/"-->
     <!--当把struts.xml放在src文件夹下而不是resources文件夹中的时候，会出现以下报错（即便加上namespace="/"也不行）-->
     <!--“There is no Action mapped for namespace [/] and action name [register] associated with context path [/SSH].”-->
     <include file="struts-default.xml"/>
-    <package name="select" extends="struts-default" >
+    <package name="select" extends="struts-default,json-default">
        <action name="user_*" class="org.select.action.UserAction" method="{1}">
          <result name="input">/login.jsp</result>
            <result name="success" type="redirectAction">course_findAll.action</result>
+           <result name="saveSuccess">course_findAll.action</result>
       </action>
-        <action name="course_*" class="org.select.action.CourseAction" method="{1}">
+        <action name="course_*" class="org.select.action.CourseAction" method="{1}" >
            <result name="findAll">/course.jsp</result>
+            <result name="findName">/courseSearch.jsp</result>
         </action>
-    </package>
+        <action name="student_*" class="org.select.action.StudentAction" method="{1}">
+            <result name="saveSuccess" type="json"></result>
+            <result name="find" type="redirectAction">course_findAll.action</result>
+        </action>
 
+ </package>
+<!--<package name="json" extends="json-default">-->
+    <!--<action name="student_*" class="org.select.action.StudentAction">-->
+        <!--<result name="saveSuccess" type="json"></result>-->
+    <!--</action>-->
+<!--</package>-->
 </struts>

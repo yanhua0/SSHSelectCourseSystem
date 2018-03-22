@@ -2,7 +2,7 @@ package org.select.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.select.entity.User;
+import org.select.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,25 +14,27 @@ import static org.junit.Assert.*;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:applicationContext.xml"})
-public class UserDaoTest {
+public class StudentDaoTest {
     @Autowired
-    private UserDao userDao;
+    private StudentDao studentDao;
     @Test
-    public void findByUsernameAndPassword() {
-        User user=new User();
-        user.setUsername("1");
-        user.setPassword("1");
-        User user2=userDao.findByUsernameAndPassword(user);
-        System.out.println(user2+"jjjjjjjjjjj");
+    public void save() {
+        Student student=new Student();
+        student.setClassroom("1");
+        student.setCourseId(1222);
+        student.setCourseName("1");
+        student.setTeacherName("222555");
+        student.setStudentName("1");
+        student.setUsername("sss");
+        studentDao.save(student);
     }
 
     @Test
-    public void save() {
-        User user=new User();
-        user.setUsername("5");
-        user.setPassword("12");
-        user.setState(1);
-        user.setName("dddd");
-        userDao.save(user);
+    public void findByUsernameAndCourseId() {
+        Student student=new Student();
+        student.setCourseId(1222);
+        student.setUsername("sss");
+       student= studentDao.findByUsernameAndCourseId(student);
+
     }
 }

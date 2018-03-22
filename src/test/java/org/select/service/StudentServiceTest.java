@@ -1,7 +1,10 @@
-package org.select.dao;
+package org.select.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.select.dao.CourseDao;
+import org.select.entity.Course;
+import org.select.entity.Student;
 import org.select.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -9,30 +12,31 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:applicationContext.xml"})
-public class UserDaoTest {
+public class StudentServiceTest {
     @Autowired
-    private UserDao userDao;
+    private StudentService studentService;
+    @Autowired
+    private  UserService userService;
+    @Autowired
+    private CourseDao courseDao;
     @Test
-    public void findByUsernameAndPassword() {
-        User user=new User();
-        user.setUsername("1");
-        user.setPassword("1");
-        User user2=userDao.findByUsernameAndPassword(user);
-        System.out.println(user2+"jjjjjjjjjjj");
+    public void save() {
+        Student student=new Student();
+        student.setCourseId(1);
+        student.setUsername("1");
+       studentService.save(student);
     }
 
     @Test
-    public void save() {
-        User user=new User();
-        user.setUsername("5");
-        user.setPassword("12");
-        user.setState(1);
-        user.setName("dddd");
-        userDao.save(user);
+    public void studentChoose() {
+
+
     }
 }

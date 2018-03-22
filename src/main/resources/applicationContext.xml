@@ -51,48 +51,54 @@
             <list>
                 <value>org/select/entity/User.hbm.xml</value>
                 <value>org/select/entity/Course.hbm.xml</value>
+                <value>org/select/entity/Student.hbm.xml</value>
              </list>
         </property>
     </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
+    <!-- 开启注解扫描  @Respostory  @Service  @Controller-->
+    <context:annotation-config />
+    <context:component-scan base-package="org.select"/>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
     </bean>
-    <bean id="userDao" class="org.select.dao.impl.UserDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>
-    <bean id="courseDao" class="org.select.dao.impl.CourseDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"></property>
-   </bean>
-
-
-    <bean id="userService" class="org.select.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao"></property>
-    </bean>
-    <bean id="courseService" class="org.select.service.impl.CourseServiceImpl">
-        <property name="courseDao" ref="courseDao"></property>
-    </bean>
-
-    <bean id="courseAction" class="org.select.action.CourseAction">
-        <property name="courseService" ref="courseService"></property>
-    </bean>
-    <!--<bean id="userDao" class="org.ssh.dao.impl.EmployeeDaoImpl">-->
-        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
-    <!--</bean>-->
-    <!--<bean id="departmentDao" class="org.ssh.dao.impl.DepartmentDaoImpl">-->
-        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
-    <!--</bean>-->
-    <!--<bean id="employeeService" class="org.ssh.service.impl.EmployeeServiceImpl">-->
-        <!--<property name="employeeDao" ref="employeeDao" />-->
-    <!--</bean>-->
-    <!--<bean id="departmentService" class="org.ssh.service.impl.DepartmentServiceImpl">-->
-        <!--<property name="departmentDao" ref="departmentDao" />-->
-    <!--</bean>-->
-    <!--<bean id="employeeAction" class="org.ssh.action.EmployeeAction" scope="prototype">-->
-        <!--<property name="employeeService" ref="employeeService" />-->
-    <!--</bean>-->
-    <!--<bean id="departmentAction" class="org.ssh.action.DepartmentAction" scope="prototype">-->
-        <!--<property name="departmentService" ref="departmentService" />-->
-    <!--</bean>-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--不使用注解-->
+    <!--<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;Dao&ndash;&gt;-->
+    <!--<bean id="userDao" class="org.select.dao.impl.UserDaoImpl">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"></property>-->
+    <!--</bean>-->
+    <!--<bean id="courseDao" class="org.select.dao.impl.CourseDaoImpl">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"></property>-->
+   <!--</bean>-->
+    <!--<bean id="studentDao" class="org.select.dao.impl.StudentDaoImpl">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"></property>-->
+    <!--</bean>-->
+     <!--&lt;!&ndash;Service&ndash;&gt;-->
+    <!--<bean id="userService" class="org.select.service.impl.UserServiceImpl">-->
+        <!--<property name="userDao" ref="userDao"></property>-->
+    <!--</bean>-->
+    <!--<bean id="courseService" class="org.select.service.impl.CourseServiceImpl">-->
+        <!--<property name="courseDao" ref="courseDao"></property>-->
+        <!--<property name="studentDao" ref="studentDao"></property>-->
+    <!--</bean>-->
+    <!--<bean id="studentService" class="org.select.service.impl.StudentServiceImpl">-->
+        <!--<property name="studentDao" ref="studentDao"></property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;action&ndash;&gt;-->
+    <!--<bean id="userAction" class="org.select.action.UserAction">-->
+        <!--<property name="userService" ref="userService"></property>-->
+    <!--</bean>-->
+
+    <!--<bean id="courseAction" class="org.select.action.CourseAction">-->
+        <!--<property name="courseService" ref="courseService"></property>-->
+    <!--</bean>-->
+    <!--<bean id="studentAction" class="org.select.action.StudentAction">-->
+        <!--<property name="studentService" ref="studentService"></property>-->
+    <!--</bean>-->
+
+
+
 </beans>

@@ -8,14 +8,57 @@
     <!-- 包含 bootstrap 样式表 -->
     <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
     <style type="text/css">
-        .pagination{
-            margin-left:430px;
+        .test{
+            height: 20px;
+        }
+        .test ul{
+
+            position: absolute;
+            left: 50%;
+            top: -30%;
+            transform:translate(-50%,-50%);
         }
     </style>
+    <script src="resource/jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                var input=$(this).siblings("input").val();
+                window.location.href="/course_findName.action?courseName="+input;
+            })
+            $(".choose").click(function () {
+                var courseName= $(this).parent().siblings(".d1").html();
+                var courseId= $(this).parent().siblings(".d2").html();
+                var teacherName= $(this).parent().siblings(".d3").html();
+                var classroom= $(this).parent().siblings(".d4").html();
+                var name=$("#name").html();
+                var username=$("#username").val();
+                console.log($(this).parent().html());
+                $.ajax({
+                  url:"${pageContext.request.contextPath }/student_save.action",
+                  type:"POST",
+                  dataType:"json",
+                  data:{"username":username,"studentName":name,
+                  "courseId":parseInt(courseId),"courseName":courseName,
+                  "teacherName":teacherName,"classroom":classroom},
+                    // ajax里面取不到this
+                success:function (data) {
+                      console.log("成功");
+                },
+                error:function () {
+                    console.log("失败");
+                }
+              })
+                $(this).parent().html("<a>已选</a>");
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="container">
+    <h3>欢迎<strong id="name"><s:property value="#session.userexist.name"/></strong>登陆</h3>
 	<div class="panel panel-primary">
+        <div class="search"><input type="text" style="width: 200px;" placeholder="请输入课程名"> <button class="btn btn-primary">搜索</button></div>
 	<div class="panel-heading">
 		<h3 class="panel-title text-center">
 			校内任选课程
@@ -33,20 +76,31 @@
             <th>操作</th>
  </tr>
    </thead>
-   <tbody>
+   <tbody id="table1">
    <s:iterator value="list" var="course">
+       <s:set var="flag" value="0"/>
       <tr>
-         <td><s:property value="#course.courseName"/></td>
-         <td><s:property value="#course.courseId"/></td>
-          <td><s:property value="#course.teacherName"/></td>
-           <td><s:property value="#course.classroom"/></td>
+         <td class="d1"><s:property value="#course.courseName"/></td>
+         <td class="d2"><s:property value="#course.courseId"/></td>
+          <td class="d3"><s:property value="#course.teacherName"/></td>
+           <td class="d4"><s:property value="#course.classroom"/></td>
             <td><s:property value="#course.number"/></td>
-            <td><a>选课</a></td>
+
+          <s:iterator value="#request.studentlist" var="c">
+          <s:if test="#c.courseId==#course.courseId">
+              <td><a>已选</a></td>
+              <s:set var="flag" value="1"/>
+          </s:if>
+          </s:iterator>
+          <s:if test="#flag==0">
+              <td id="test1" class="ss"><a href="javascript:void(0)" class="choose">选课</a></td>
+          </s:if>
       </tr>
+
    </s:iterator>
   </tbody>
 </table>
-       <div><ul class="pagination">
+       <div class="test" style="position: relative;"><ul class="pagination">
             <s:if test="currPage != 1">
                 <li><a href="${pageContext.request.contextPath }/course_findAll.action?currPage=1">首页</a></li>
                 <li><a href="${pageContext.request.contextPath }/course_findAll.action?currPage=<s:property value="currPage-1"/>">&laquo;</a></li>
@@ -76,5 +130,6 @@
     </div>
 	</div>
 </div>
+<input type="hidden" id="username" value="<s:property value="#session.userexist.username"/>">
 </body>
 </html>

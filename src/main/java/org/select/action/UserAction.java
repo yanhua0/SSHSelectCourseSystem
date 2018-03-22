@@ -5,15 +5,16 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.select.entity.User;
 import org.select.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
+@Controller
+@Scope("prototype")
 public class UserAction extends ActionSupport implements ModelDriven<User> {
     private User user=new User();
+    @Autowired
     private UserService userService;
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
     public User getModel() {
         return user;
     }
@@ -28,5 +29,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             ActionContext.getContext().getSession().put("userexist",userexist);
             return SUCCESS;
         }
+    }
+    public String save()
+    {  System.out.println("dddddddddddddddddddddddddddddddddddddddd");
+        // studentService.save(student);
+        return "saveSuccess";
     }
 }
