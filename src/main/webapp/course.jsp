@@ -19,7 +19,7 @@
             transform:translate(-50%,-50%);
         }
     </style>
-    <script src="resource/jquery-1.11.1.min.js"></script>
+    <script src="resource/js/jquery-1.11.1.min.js"></script>
     <script>
         $(function () {
             $(".btn").click(function () {
@@ -43,7 +43,7 @@
                   "teacherName":teacherName,"classroom":classroom},
                     // ajax里面取不到this
                 success:function (data) {
-                      console.log("成功");
+                      console.log(data);
                 },
                 error:function () {
                     console.log("失败");

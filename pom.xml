@@ -144,6 +144,11 @@
       <artifactId>struts2-json-plugin</artifactId>
       <version>2.3.7</version>
     </dependency>
+      <dependency>
+          <groupId>com.github.tomakehurst</groupId>
+          <artifactId>wiremock</artifactId>
+          <version>1.46</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>SelectCourseSystem</finalName>
