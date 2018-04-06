@@ -45,14 +45,23 @@
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
+
         </property>
         <!-- 加载hibernate中的映射文件,源代码中是以数组的形式来写的，所以这里用list标签 -->
+
         <property name="mappingResources" >
+
             <list>
                 <value>org/select/entity/User.hbm.xml</value>
-                <value>org/select/entity/Course.hbm.xml</value>
                 <value>org/select/entity/Student.hbm.xml</value>
              </list>
+
+        </property>
+        <property name="annotatedClasses">
+            <list>
+            <value>org.select.entity.Course</value>
+                <value>org.select.entity.Test</value>
+            </list>
         </property>
     </bean>
     <!-- 开启注解扫描  @Respostory  @Service  @Controller-->
@@ -62,6 +71,7 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
     <!--不使用注解-->
     <!--<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
         <!--<property name="sessionFactory" ref="sessionFactory"/>-->

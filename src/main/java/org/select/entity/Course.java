@@ -1,13 +1,32 @@
 package org.select.entity;
 
-import java.util.Date;
+import javax.persistence.*;
 
+@Entity
+@Table(name="course",schema = "selectcourse")
 public class Course {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "course_id")
     private int courseId;
+    @Column(name = "course_name")
     private String courseName;
+    @Column(name = "teacher_name")
     private String teacherName;
+    @Column(name = "classroom")
     private String classroom;
+    @Column(name = "number")
     private int number;
+    @Column(name = "teacher_id")
+    private String teacherId;
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
 
     public int getNumber() {
         return number;
@@ -52,11 +71,12 @@ public class Course {
     @Override
     public String toString() {
         return "Course{" +
-                "courseName='" + courseName + '\'' +
-                ", courseId=" + courseId +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
                 ", teacherName='" + teacherName + '\'' +
                 ", classroom='" + classroom + '\'' +
                 ", number=" + number +
+                ", teacherId=" + teacherId +
                 '}';
     }
 }

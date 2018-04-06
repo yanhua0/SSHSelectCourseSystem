@@ -2,15 +2,11 @@ package org.select.service.impl;
 
 import org.select.dao.CourseDao;
 import org.select.dao.StudentDao;
-import org.select.entity.Course;
 import org.select.entity.Student;
-import org.select.entity.User;
 import org.select.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
 @Service
 @Transactional
@@ -39,6 +35,18 @@ public class StudentServiceImpl implements StudentService {
 
     public Student findUsernameAndCourseId(Student student) {
          return  studentDao.findByUsernameAndCourseId(student);
+    }
+
+    public List<Student> findByUsername(Student student) {
+        return studentDao.findByUsername(student);
+    }
+
+    public Student findById(Integer id) {
+       return studentDao.findById(id);
+    }
+
+    public void deleteCourse(Student student) {
+        studentDao.delete(student);
     }
 //    public List<Student> studentChoose(User user) {
 //        List<Course> courseList=courseDao.findAllC();

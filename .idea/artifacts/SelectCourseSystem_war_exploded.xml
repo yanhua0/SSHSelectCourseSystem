@@ -44,12 +44,8 @@
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.12" />
-          <element id="library" level="project" name="Maven: log4j:log4j:1.2.15" />
-          <element id="library" level="project" name="Maven: javax.mail:mail:1.4" />
-          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
-          <element id="library" level="project" name="Maven: javax.jms:jms:1.1" />
-          <element id="library" level="project" name="Maven: com.sun.jdmk:jmxtools:1.2.1" />
-          <element id="library" level="project" name="Maven: com.sun.jmx:jmxri:1.2.1" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.1" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.1" />
           <element id="library" level="project" name="Maven: javassist:javassist:3.11.0.GA" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.7.RELEASE" />
           <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
@@ -65,6 +61,7 @@
           <element id="library" level="project" name="Maven: org.mortbay.jetty:servlet-api:2.5-20081211" />
           <element id="library" level="project" name="Maven: org.skyscreamer:jsonassert:1.2.1" />
           <element id="library" level="project" name="Maven: org.json:json:20090211" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
           <element id="library" level="project" name="Maven: com.jayway.jsonpath:json-path:0.8.1" />
           <element id="library" level="project" name="Maven: net.minidev:json-smart:1.1.1" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />

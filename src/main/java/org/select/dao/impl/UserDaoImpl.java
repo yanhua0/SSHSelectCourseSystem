@@ -28,4 +28,26 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     public void save(User user) {
         this.getHibernateTemplate().save(user);
     }
+
+    public void saveList(List<User> user) {
+        for(int i=0;i<user.size();i++)
+        {
+            this.getHibernateTemplate().save(user.get(i));
+        }
+
+    }
+
+    public void deleteList(List<User> user) {
+        for(int i=0;i<user.size();i++)
+        {
+            this.getHibernateTemplate().delete(user.get(i));
+        }
+    }
+
+    public void updateList(List<User> user) {
+        for(int i=0;i<user.size();i++)
+        {
+            this.getHibernateTemplate().update(user.get(i));
+        }
+    }
 }

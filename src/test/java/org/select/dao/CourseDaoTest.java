@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 @Transactional
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:applicationContext.xml"})
 public class CourseDaoTest {
@@ -22,7 +22,7 @@ public class CourseDaoTest {
     @Test
     public void findByName() {
         Course course=new Course();
-        course.setCourseName("小");
+        course.setCourseName("高等数学");
         List<Course> courses=courseDao.findByName(course);
         System.out.println(courses+"ddddd");
     }
@@ -32,4 +32,14 @@ public class CourseDaoTest {
         int  i=courseDao.findCount();
         System.out.println(i);
     }
+
+    @Test
+    public void update() {
+        Course course=new Course();
+       course.setCourseId(1);
+       course=courseDao.findById(course.getCourseId());
+       System.out.println(course);
+       course.setCourseName("11111");
+       courseDao.update(course);
+       }
 }

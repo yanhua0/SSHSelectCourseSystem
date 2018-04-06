@@ -13,6 +13,7 @@
         <property name="courseName" column="course_name" length="255" not-null="true"></property>
         <property name="courseId" column="course_id" length="12" not-null="true" type="java.lang.Integer"></property>
         <property name="teacherName" column="course_teacher" length="255" not-null="true"></property>
+        <property name="teacherId" column="teacher_id" length="12" not-null="true"></property>
         <property name="classroom" column="classroom" length="255" not-null="true"></property>
         <property name="createTime" column="create_time" type="java.util.Date" length="255"></property>
 

@@ -3,14 +3,31 @@ package org.select.entity;
 import java.util.Date;
 
 public class Student {
+    private int id;
     private String username;
     private String studentName;
     private String courseName;
     private int courseId;
     private String teacherName;
+    private String teacherId;
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
     private String classroom;
     private Date createTime;
-    private int id;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -68,25 +85,19 @@ public class Student {
         this.createTime = createTime;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
         return "Student{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", studentName='" + studentName + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", courseId=" + courseId +
                 ", teacherName='" + teacherName + '\'' +
+                ", teacherId=" + teacherId +
                 ", classroom='" + classroom + '\'' +
                 ", createTime=" + createTime +
-                ", id=" + id +
                 '}';
     }
 }

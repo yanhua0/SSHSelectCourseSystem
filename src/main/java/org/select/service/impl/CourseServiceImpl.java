@@ -74,6 +74,26 @@ public class CourseServiceImpl implements CourseService {
         return null;
     }
 
+    public void update(Course course) {
+        courseDao.update(course);
+       try{
+            Student student=new Student();
+            student.setCourseId(course.getCourseId());
+            Student student1=studentDao.findByCourseId(student);
+            student1.setCourseName(course.getCourseName());
+            student1.setTeacherName(course.getTeacherName());
+            student1.setClassroom(course.getClassroom());
+            studentDao.update(student1);
+        }catch (Exception e)
+        {
+            e.getMessage();
+        }
+
+     }
+
+    public Course findById(Integer id) {
+        return courseDao.findById(id);
+    }
 
 
 }

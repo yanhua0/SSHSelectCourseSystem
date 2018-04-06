@@ -12,5 +12,6 @@ public interface CourseService {
     List<Course> findByName(Course course);
     List<Course> findAll();
     List<Student> studentChoose(User user);
-
+    void update(Course course);
+    Course findById(Integer id);
 }

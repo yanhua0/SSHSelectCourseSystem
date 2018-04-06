@@ -2,6 +2,7 @@ package org.select.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.select.entity.Course;
 import org.select.entity.Student;
 import org.select.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,12 @@ public class CourseServiceTest {
         System.out.println(list);
         System.out.println(list.get(0));
         System.out.println(list.size());
+    }
+
+    @Test
+    public void update() {
+        Course course=new Course();
+        course.setCourseId(2);
+        courseService.update(course);
     }
 }
