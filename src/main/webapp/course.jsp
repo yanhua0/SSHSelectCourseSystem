@@ -27,7 +27,7 @@
     <h5><a href="user_exit.action">退出</a></h5>
     <h2><a href="student_findUsername.action?username=<s:property value="#session.userexist.username"/>">我的课程</a></h2>
     <div class="panel panel-primary">
-        <div class="search"><input type="text" style="width: 200px;" placeholder="请输入课程名"> <button class="btn btn-primary">搜索</button></div>
+        <div class="search"><input type="text" style="width: 200px;" name="courseName" placeholder="请输入课程名"> <button class="btn btn-primary">搜索</button></div>
 	<div class="panel-heading">
 		<h3 class="panel-title text-center">
 			校内任选课程

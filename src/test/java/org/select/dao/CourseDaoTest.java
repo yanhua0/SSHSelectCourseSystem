@@ -29,7 +29,7 @@ public class CourseDaoTest {
 
     @Test
     public void findCount() {
-        int  i=courseDao.findCount();
+        int  i=courseDao.findCount("5");
         System.out.println(i);
     }
 

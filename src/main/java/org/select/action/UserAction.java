@@ -15,9 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.Arrays;
+import java.util.Map;
+
+
 @Controller
 @Scope("prototype")
 public class UserAction extends ActionSupport implements ModelDriven<User> {
+
     private User user=new User();
     @Autowired
     private UserService userService;
@@ -25,8 +30,22 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return user;
     }
 
-    public String login() {
+    public String login(){
+        //获取前端数据
+        ActionContext context=ActionContext.getContext();
+        Map<String,Object> map=context.getParameters();
+
+        for (String key : map.keySet()) {
+            Object[] obj= (Object[]) map.get(key);
+            System.out.println("key= "+key+" and value= "+map.get(key)+"and object="+ Arrays.toString(obj));
+
+        }
+        //第二种实验ServletActionContext
+
         HttpServletRequest request= ServletActionContext.getRequest();
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        System.out.println("username="+username+"password="+password);
         HttpServletResponse response=ServletActionContext.getResponse();
         HttpSession session= request.getSession();
         User userexist = userService.login(user);
@@ -35,13 +54,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             return INPUT;
         }
         else {
+
             ActionContext.getContext().getSession().put("userexist",userexist);
             Cookie cookieSId = new Cookie("JSESSIONID",session.getId());
             cookieSId.setMaxAge(60*60);
             cookieSId.setPath("/");
             response.addCookie(cookieSId);
              return SUCCESS;
+
      }
+
+
+
 
     }
     public String save()
@@ -55,4 +79,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         session.invalidate();
         return INPUT;
     }
+
+
 }

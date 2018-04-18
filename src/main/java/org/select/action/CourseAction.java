@@ -42,23 +42,26 @@ public class CourseAction extends ActionSupport implements ModelDriven<Course> {
         System.out.println(user);
 
         List<Student> list=courseService.studentChoose(user);
-        System.out.println(list);
         request.setAttribute("studentlist",list);
-        PageBean<Course> pageBean=courseService.findByPage(currPage);
+
+        PageBean<Course> pageBean=courseService.findByPage(course.getCourseName(),currPage);
         ActionContext.getContext().getValueStack().push(pageBean);
         return "findAll";
     }
-    public String findName()
-     {  HttpServletRequest request= ServletActionContext.getRequest();
-        List<Course> course1=courseService.findByName(course);
-        User user= (User) ServletActionContext.getRequest().getSession().getAttribute("userexist");
-        List<Student> list=courseService.studentChoose(user);
-        System.out.println(list);
-        request.setAttribute("studentlist",list);
-        request.setAttribute("list", course1);
-
-        return "findName";
-    }
+    /*
+    用另外一个表单页面显示搜索结果
+     */
+//    public String findName()
+//     {  HttpServletRequest request= ServletActionContext.getRequest();
+//        List<Course> course1=courseService.findByName(course);
+//        User user= (User) ServletActionContext.getRequest().getSession().getAttribute("userexist");
+//        List<Student> list=courseService.studentChoose(user);
+//        System.out.println(list);
+//        request.setAttribute("studentlist",list);
+//        request.setAttribute("list", course1);
+//
+//        return "findName";
+//    }
     public String updateUI()
     {   course=courseService.findById(course.getCourseId());
 

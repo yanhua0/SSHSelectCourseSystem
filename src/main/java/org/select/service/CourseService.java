@@ -8,7 +8,7 @@ import org.select.entity.User;
 import java.util.List;
 
 public interface CourseService {
-    PageBean<Course> findByPage(Integer currPage);
+    PageBean<Course> findByPage(String courseName,Integer currPage);
     List<Course> findByName(Course course);
     List<Course> findAll();
     List<Student> studentChoose(User user);

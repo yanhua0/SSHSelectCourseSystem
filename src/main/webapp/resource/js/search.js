@@ -1,7 +1,7 @@
 $(function () {
     $(".btn").click(function () {
         var input=$(this).siblings("input").val();
-        window.location.href="/course_findName.action?courseName="+input;
+        window.location.href="/course_findAll.action?courseName="+input;
     });
     $(".choose").click(function () {
         var courseName= $(this).parent().siblings(".d1").html();

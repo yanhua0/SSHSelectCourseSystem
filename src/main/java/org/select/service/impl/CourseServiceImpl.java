@@ -25,19 +25,19 @@ public class CourseServiceImpl implements CourseService {
 
 
 
-    public PageBean<Course> findByPage(Integer currPage) {
+    public PageBean<Course> findByPage(String courseName,Integer currPage) {
         PageBean<Course> pageBean=new PageBean<Course>();
         pageBean.setCurrPage(currPage);
         int pageSize=10;
         pageBean.setPageSize(pageSize);
-        int count=courseDao.findCount();
+        int count=courseDao.findCount(courseName);
         pageBean.setTotalCount(count);
         double tc = count;
         Double num = Math.ceil(tc/pageSize);
         pageBean.setTotalPage(num.intValue());//总共页数计算
 
         int begin = (currPage - 1)*pageSize;//开始页计算
-        List<Course> list = courseDao.findByPage(begin, pageSize);
+        List<Course> list = courseDao.findByPage(courseName,begin, pageSize);
         pageBean.setList(list);
         return pageBean;
     }
@@ -51,7 +51,8 @@ public class CourseServiceImpl implements CourseService {
     }
     public List<Student> studentChoose(User user) {
         List<Course> courseList=courseDao.findAllC();
-        int count=courseDao.findCount();
+        String course=null;
+        int count=courseDao.findCount(course);
         List<Student> studentChoose=new ArrayList<Student>();
         List<Course> courseAll=courseDao.findAllC();
         int[] courseId=new int[count];

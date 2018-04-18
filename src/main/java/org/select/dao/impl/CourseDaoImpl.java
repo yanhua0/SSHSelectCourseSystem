@@ -1,16 +1,14 @@
 package org.select.dao.impl;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.select.dao.CourseDao;
 import org.select.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 @Repository
 public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
@@ -18,19 +16,35 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
     public void setSessionFactoryOverride(SessionFactory sessionFactory) {
         super.setSessionFactory(sessionFactory);
     }
-    public int findCount() {
-        String hql="select count(*) from Course";
-        List<Long> list= (List<Long>) this.getHibernateTemplate().find(hql);
-        if(list.size()>0)
+    public int findCount(String courseName) {
+        if(courseName!=null)
         {
-            return list.get(0).intValue();
+            List<Long> list=(List<Long>) this.getHibernateTemplate().find
+                    ("select count(*)from Course where  course_name like ?",
+                            "%"+courseName+"%");
+           if (list.size()>0)
+           {
+               return list.get(0).intValue();
+           }
+        }else{
+            String hql="select count(*) from Course";
+            List<Long> list= (List<Long>) this.getHibernateTemplate().find(hql);
+            if(list.size()>0)
+            {
+                return list.get(0).intValue();
+            }
+
         }
         return 0;
      }
 
-    public List<Course> findByPage(int begin, int pageSize) {
+    public List<Course> findByPage(String courseName,int begin, int pageSize) {
         DetachedCriteria criteria=DetachedCriteria.forClass(Course.class);
-        List<Course> list= (List<Course>) this.getHibernateTemplate().findByCriteria(criteria,begin,pageSize);
+        if(courseName!=null)
+        {
+            criteria.add(Restrictions.like("courseName","%"+courseName+"%"));
+        }
+       List<Course> list= (List<Course>) this.getHibernateTemplate().findByCriteria(criteria,begin,pageSize);
        return list;
     }
 
