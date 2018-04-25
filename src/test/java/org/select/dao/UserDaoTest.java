@@ -3,7 +3,8 @@ package org.select.dao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.select.entity.User;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,11 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Transactional
 @TransactionConfiguration(defaultRollback = false, transactionManager = "transactionManager")
@@ -26,7 +23,7 @@ public class UserDaoTest {
     @Autowired
     private UserDao userDao;
 //    private static Logger logger = Logger.getLogger(UserDaoTest.class);
-private org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Test
     public void findByUsernameAndPassword() {
         User user=new User();
@@ -99,6 +96,11 @@ private org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
         user3.setName("123");
         list.add(user3);
         userDao.updateList(list);
+        Iterator<User> it=list.iterator();
+        while(it.hasNext())
+        {   User u=it.next();
+            System.out.println(u);
+        }
     }
     @Test
     public void hashmap() {

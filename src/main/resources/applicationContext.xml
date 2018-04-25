@@ -57,6 +57,7 @@
              </list>
 
         </property>
+
         <property name="annotatedClasses">
             <list>
             <value>org.select.entity.Course</value>
