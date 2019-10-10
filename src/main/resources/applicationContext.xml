@@ -57,13 +57,18 @@
              </list>
 
         </property>
-
-        <property name="annotatedClasses">
+        <property name="packagesToScan">
             <list>
-            <value>org.select.entity.Course</value>
-                <value>org.select.entity.Test</value>
+                <value>org.select.entity</value>
             </list>
         </property>
+        <!--<property name="annotatedClasses">-->
+            <!--<list>-->
+            <!--<value>org.select.entity.Course</value>-->
+                <!--<value>org.select.entity.CourseBean</value>-->
+                <!--<value>org.select.entity.Test</value>-->
+            <!--</list>-->
+        <!--</property>-->
     </bean>
     <!-- 开启注解扫描  @Respostory  @Service  @Controller-->
     <context:annotation-config />

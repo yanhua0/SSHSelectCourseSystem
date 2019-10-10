@@ -2,9 +2,11 @@ package org.select.entity;
 
 import javax.persistence.*;
 
+/**
+ *
+ */
 @Entity
-@Table(name="course",schema = "selectcourse")
-public class Course {
+public class CourseBean {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "course_id")
@@ -13,20 +15,13 @@ public class Course {
     private String courseName;
     @Column(name = "teacher_name")
     private String teacherName;
-    @Column(name = "class_room")
-    private String classRoom;
+
     @Column(name = "number")
     private Integer number;
     @Column(name = "teacher_id")
     private String teacherId;
 
-    public Course() {
-    }
 
-    public Course(Integer courseId, String courseName) {
-        this.courseId=courseId;
-        this.courseName = courseName;
-    }
 
     public String getTeacherId() {
         return teacherId;
@@ -70,23 +65,5 @@ public class Course {
 
 
 
-    public String getClassRoom() {
-        return classRoom;
-    }
 
-    public void setClassRoom(String classRoom) {
-        this.classRoom = classRoom;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseId=" + courseId +
-                ", courseName='" + courseName + '\'' +
-                ", teacherName='" + teacherName + '\'' +
-                ", classroom='" + classRoom + '\'' +
-                ", number=" + number +
-                ", teacherId=" + teacherId +
-                '}';
-    }
 }

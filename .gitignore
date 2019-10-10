@@ -1,0 +1,17 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+.idea/dataSources.local.xml
+.idea/encodings.xml
+.idea/workspace.xml
+MyLog/logFile.2018-04-07.log
+MyLog/logFile.2018-04-18.log
+MyLog/logFile.2018-04-24.log
+out/
+target/

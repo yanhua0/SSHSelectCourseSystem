@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-@Transactional
 public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseDao courseDao;
@@ -83,7 +82,7 @@ public class CourseServiceImpl implements CourseService {
             Student student1=studentDao.findByCourseId(student);
             student1.setCourseName(course.getCourseName());
             student1.setTeacherName(course.getTeacherName());
-            student1.setClassroom(course.getClassroom());
+            student1.setClassroom(course.getClassRoom());
             studentDao.update(student1);
         }catch (Exception e)
         {
