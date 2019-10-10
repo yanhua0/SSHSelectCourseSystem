@@ -37,7 +37,7 @@ private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Test
     public void save() {
         User user=new User();
-        user.setUsername("52");
+        user.setUsername("522134");
         user.setPassword("12");
         user.setState(1);
         user.setName("dddd");

@@ -29,7 +29,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
         if(courseName!=null)
         {
             List<Long> list=(List<Long>) this.getHibernateTemplate().find
-                    ("select count(*)from Course where  course_name like ?",
+                    ("select count(*)from Course where  courseName like ?",
                             "%"+courseName+"%");
            if (list.size()>0)
            {
@@ -62,7 +62,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
         if(courseName!=null)
         {
             criteria.add(Restrictions.eq("courseName",courseName));
-            criteria.add(Restrictions.ge());
+          //  criteria.add(Restrictions.ge());
         }
         List<Course> list= (List<Course>) this.getHibernateTemplate().findByCriteria(criteria);
         return list;
@@ -74,7 +74,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
            List<Course> courses=(List<Course>) this.getHibernateTemplate().find
                    ("from Course where  courseName like ?",
                            "%"+course.getCourseName()+"%");
-           this.getHibernateTemplate().getSessionFactory().getCurrentSession().clear();
+           //this.getHibernateTemplate().getSessionFactory().getCurrentSession().clear();
           return courses;
        }
 
@@ -103,7 +103,7 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
         query.setParameter("name",course.getCourseName());
         //query.setParameter(0,course.getCourseName());使用?
         //清除session.clear();否则set方法hibernate会调用更新方法
-        return query.list();
+        return query.addEntity(CourseBean.class).list();
     }
 
     /**

@@ -66,8 +66,8 @@ public class StudentDaoTest {
 
     @Test
     public void findById() {
-        Student student=new Student();
-        student=studentDao.findById(43);
+        Student student=studentDao.findById(30);
+      student.setUsername("123");
         System.out.println(student);
     }
 }

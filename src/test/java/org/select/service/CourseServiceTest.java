@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 @Transactional
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:applicationContext.xml"})
 public class CourseServiceTest {
@@ -23,6 +23,8 @@ public class CourseServiceTest {
     private CourseService courseService;
     @Test
     public void findByPage() {
+        Course course=courseService.findById(1);
+        course.setCourseName("123");
     }
 
     @Test
@@ -37,8 +39,10 @@ public class CourseServiceTest {
 
     @Test
     public void update() {
-        Course course=new Course();
-        course.setCourseId(2);
+        Course course=courseService.findById(1);
+//      //  course.setCourseId(1);
+//        course.setCourseName("15");
+//        System.out.println(course);
         courseService.update(course);
     }
 }

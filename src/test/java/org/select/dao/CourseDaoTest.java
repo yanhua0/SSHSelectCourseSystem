@@ -22,22 +22,26 @@ public class CourseDaoTest {
     @Test
     public void findByName() {
         Course course=new Course();
-        course.setCourseName("高等数学");
+        course.setCourseName("980");
         //select courseId,courseName
-        //List<Course> courses=courseDao.findByName(course);
+        List<Course> courses=courseDao.findByName(course);
         //courses.get(0).setCourseId(11);
-        List<CourseBean> courses=courseDao.findByName2(course);
-        //courses.get(0).setCourseName("980");
-        List<Course> coursesz=courseDao.findByName3(course);
-        List<String> coursesz1=courseDao.findByString(course);
-        System.out.println(coursesz.get(0).getCourseName());
+       // List<CourseBean> courses=courseDao.findByName2(course);
+        System.out.println(courses.get(0).getCourseId());
+        courses.get(0).setCourseName("9810");
+// List<Course> coursesz=courseDao.findByName3(course);
+//        List<String> coursesz1=courseDao.findByString(course);
+
+       // System.out.println(coursesz.get(0).getCourseName());
         //System.out.println(courses+"ddddd");
     }
 
     @Test
     public void findCount() {
-        int  i=courseDao.findCount("5");
-        System.out.println(i);
+        Course  i=courseDao.findById(1);
+        i.setCourseName("1423");
+        //courseDao.
+        System.out.println(i.getCourseName());
     }
 
     @Test
