@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * hibernate查询时，必须映射接收实体的所有属性，可以通过findName3的方法进行规避
+ * hibernate在修改时候，如果字段没有进行修改，那么不会执行sql
  */
 @Repository
 public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
