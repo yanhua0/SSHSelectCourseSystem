@@ -13,6 +13,6 @@ public interface CourseDao {
     List<Course> findAllC();
     Course findById(Integer id);
     void update(Course course);
-
+    List<String> findByString(Course course);
     List<Course> findByName3(Course course);
 }

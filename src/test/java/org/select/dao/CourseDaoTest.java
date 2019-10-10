@@ -27,9 +27,9 @@ public class CourseDaoTest {
         //List<Course> courses=courseDao.findByName(course);
         //courses.get(0).setCourseId(11);
         List<CourseBean> courses=courseDao.findByName2(course);
-        courses.get(0).setCourseName("980");
+        //courses.get(0).setCourseName("980");
         List<Course> coursesz=courseDao.findByName3(course);
-
+        List<String> coursesz1=courseDao.findByString(course);
         System.out.println(coursesz.get(0).getCourseName());
         //System.out.println(courses+"ddddd");
     }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,7 +57,16 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
        return list;
     }
 
-
+    public List<Course> findByNameC(String courseName) {
+        DetachedCriteria criteria=DetachedCriteria.forClass(Course.class);
+        if(courseName!=null)
+        {
+            criteria.add(Restrictions.eq("courseName",courseName));
+            criteria.add(Restrictions.ge());
+        }
+        List<Course> list= (List<Course>) this.getHibernateTemplate().findByCriteria(criteria);
+        return list;
+    }
 
     public List<Course> findByName(Course course)
        {/*String hql="from Course where course_name=?";
@@ -68,10 +78,15 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
           return courses;
        }
 
+    /**
+     * 推荐使用*****，站位可以写？或者(:name)，连表查询时专用
+     * @param course
+     * @return
+     */
     public List<CourseBean> findByName2(Course course)
     {/*String hql="from Course where course_name=?";
         return (List<Course>) this.getHibernateTemplate().find(hql,course.getCourseName());*/
-        String hql="select " +
+        String sql="select " +
                 " c.course_id course_id," +
                 "  " +
                 " c.course_name," +
@@ -81,18 +96,34 @@ public class CourseDaoImpl extends HibernateDaoSupport implements CourseDao {
                 "    from\n" +
                 "        course c\n" +
                 "    where\n" +
-                "        c.course_name = '高等数学'";
+                "        c.course_name = :name";
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        SQLQuery query = session.createSQLQuery(hql);
-        return query.addEntity(CourseBean.class).list();
+        SQLQuery query = session.createSQLQuery(sql);//写数据库sql
+        List<String> list=new ArrayList<String>();
+        query.setParameter("name",course.getCourseName());
+        //query.setParameter(0,course.getCourseName());使用?
+        //清除session.clear();否则set方法hibernate会调用更新方法
+        return query.list();
     }
+
+    /**
+     * 可以少写实体***，单表查询使用
+     * @param course
+     * @return
+     */
     public List<Course> findByName3(Course course)
     {/*String hql="from Course where course_name=?";
         return (List<Course>) this.getHibernateTemplate().find(hql,course.getCourseName());*/
         String hql=" select new Course(courseId,courseName) from Course ";
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(hql);//使用对象的字段作为查询
         return query.list();
+    }
+    public List<String> findByString(Course course)
+    {/*String hql="from Course where course_name=?";
+        return (List<Course>) this.getHibernateTemplate().find(hql,course.getCourseName());*/
+        String hql=" select courseName from Course ";
+        return (List<String>) getHibernateTemplate().find(hql);
     }
     public List<Course> findAllC() {
        return (List<Course>) this.getHibernateTemplate().find("from Course");
